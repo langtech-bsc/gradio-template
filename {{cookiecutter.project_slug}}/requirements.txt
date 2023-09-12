@@ -1,0 +1,4 @@
+git+https://gitlab.bsc.es/projecte-aina/aina-gradio-theme.git@1.3.5
+wheel==0.41.2
+gradio==3.43.2
+python-dotenv==1.0.0
