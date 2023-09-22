@@ -10,7 +10,7 @@ from submit_input import submit_input
 from utils import check_max_characters, clear
 
 MAX_NEW_TOKENS = int(os.environ.get("MAX_NEW_TOKENS", default=100))
-MAX_INPUT_CHARACTERS= int(os.environ.get("MAX_INPUT_CHARACTERS", default=15))
+MAX_INPUT_CHARACTERS= int(os.environ.get("MAX_INPUT_CHARACTERS", default=100))
 SHOW_MODEL_PARAMETERS_IN_UI = os.environ.get("SHOW_MODEL_PARAMETERS_IN_UI", default=True)
 
 with gr.Blocks(**AinaGradioTheme().get_kwargs()) as demo:
