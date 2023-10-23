@@ -2,7 +2,15 @@
 ```bash
 python3 -m venv env
 source env/bin/activate
-pip install wheel && pip install -r requirements.txt
+pip install -r requirements.txt
+```
+
+## environment variables
+Create an .env file on the root of the project to consume environment variables.
+
+```
+MAX_INPUT_CHARACTERS= 2000
+SHOW_MODEL_PARAMETERS_IN_UI = "True"
 ```
 
 ## usage
