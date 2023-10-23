@@ -11,7 +11,7 @@ from utils import check_max_characters, clear
 
 MAX_NEW_TOKENS = int(os.environ.get("MAX_NEW_TOKENS", default=100))
 MAX_INPUT_CHARACTERS= int(os.environ.get("MAX_INPUT_CHARACTERS", default=100))
-SHOW_MODEL_PARAMETERS_IN_UI = os.environ.get("SHOW_MODEL_PARAMETERS_IN_UI", default=True)
+SHOW_MODEL_PARAMETERS_IN_UI = os.environ.get("SHOW_MODEL_PARAMETERS_IN_UI", default=True) == "True"
 
 with gr.Blocks(**AinaGradioTheme().get_kwargs()) as demo:
     with gr.Row():
