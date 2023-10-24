@@ -1,11 +1,10 @@
-FROM python:3.9
+FROM python:3.9-slim
 
-WORKDIR /code
+WORKDIR /app
 
-COPY ./requirements.txt /code/requirements.txt
+COPY ./requirements.txt /app/requirements.txt
 
-RUN pip install --no-cache-dir --upgrade wheel &&  pip install --no-cache-dir --upgrade -r /code/requirements.txt
-
+RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 # Set up a new user named "user" with user ID 1000
 RUN useradd -m -u 1000 user
 
@@ -22,4 +21,4 @@ WORKDIR $HOME/app
 # Copy the current directory contents into the container at $HOME/app setting the owner to the user
 COPY --chown=user . $HOME/app
 
-CMD ["python", "{{cookiecutter.script_name}}"]
+CMD ["python", "-u","{{cookiecutter.project_name}}.py"]

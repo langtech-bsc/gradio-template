@@ -6,7 +6,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-from submit_input import submit_input
+from submit_input import process_input
 from utils import check_max_characters, clear
 
 MAX_NEW_TOKENS = int(os.environ.get("MAX_NEW_TOKENS", default=100))
@@ -17,14 +17,15 @@ with gr.Blocks(**AinaGradioTheme().get_kwargs()) as demo:
     with gr.Row():
         with gr.Column(scale=0):
             gr.Image(
-                "./assets/BSC-blue.svg", 
-                elem_id="aguila-banner", 
-                show_label=False, show_download_button = False, 
-                show_share_button = False
+                "./assets/BSC-blue.svg",
+                elem_id="banner",
+                show_label=False,
+                show_download_button=False, 
+                show_share_button=False
             )
         with gr.Column():
             gr.Markdown(
-                """# Model name
+                """# {{cookiecutter.project_name}}
                 
                 ✨ **[Model explanation]()** .
 
@@ -32,11 +33,11 @@ with gr.Blocks(**AinaGradioTheme().get_kwargs()) as demo:
 
                 ⚠️ **Limitations**:
 
-                👀 **Learn more about Ǎguila:** .
+                👀 **Learn more about {{cookiecutter.project_name}}:** .
                 
                 """
             )
-    with gr.Row( equal_height=False):
+    with gr.Row( equal_height=True):
         with gr.Column(variant="panel"):
             placeholder_max_characters = Textbox(
                 visible=False,
@@ -126,7 +127,7 @@ with gr.Blocks(**AinaGradioTheme().get_kwargs()) as demo:
                 ],
                 inputs=[input_] + parameters_compontents,
                 outputs=output,
-                fn=submit_input,
+                fn=process_input,
             )
 
             gr.Examples(
@@ -136,7 +137,7 @@ with gr.Blocks(**AinaGradioTheme().get_kwargs()) as demo:
                 ],
                 inputs=[input_] + parameters_compontents,
                 outputs=output,
-                fn=submit_input,
+                fn=process_input,
             )
             gr.Examples(
                 label="Few-Shot prompts:",
@@ -145,7 +146,7 @@ with gr.Blocks(**AinaGradioTheme().get_kwargs()) as demo:
                 ],
                 inputs=[input_] + parameters_compontents,
                 outputs=output,
-                fn=submit_input,
+                fn=process_input,
             )
 
     input_.change(
@@ -168,11 +169,11 @@ with gr.Blocks(**AinaGradioTheme().get_kwargs()) as demo:
     )
     
     submit_btn.click(
-        fn=submit_input, 
-        inputs=[input_] + parameters_compontents, 
+        fn=process_input, 
+        inputs=[input_], 
         outputs=[output]
     )
 
 if __name__ == "__main__":
     demo.queue(concurrency_count=1, api_open=False)
-    demo.launch(show_api=False)
+    demo.launch(show_api=False, server_name='0.0.0.0')

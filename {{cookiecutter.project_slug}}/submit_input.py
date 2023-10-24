@@ -6,27 +6,19 @@ import gradio as gr
 # from save_to_dataset_hf import save_json
 
 
-def submit_input(input_, max_new_tokens, repetition_penalty, top_k, top_p, do_sample, num_beams, temperature):
-    if input_.strip() == "":  
-        gr.Warning('Not possible to inference an empty input')
-        return None
-    
-    model_parameters = {
-        "max_new_tokens": max_new_tokens,
-        "repetition_penalty": repetition_penalty,
-        "top_k": top_k,
-        "top_p": top_p,
-        "do_sample": do_sample,
-        "num_beams": num_beams,
-        "temperature": temperature
-    }
-     
-    # e.g output = invoke_endpoint(input_, model_parameters=model_parameters)
-    model_output = None
+def compute_output(input):
+    #Change this code with yours ...
+    return f"This is a sample output for {input}"
 
-    if model_output is not None:
-        print(model_output) 
-        # save_json(input_, model_output, model_parameters)
+def process_input(input):
+    if input.strip() == "":  
+        gr.Warning('Not possible to process an empty input.')
+        return None
+    output = compute_output(input=input)
+
+    if output is not None:
+        print(output) 
+        # save_json(input, output, parameters)
     else:
-        gr.Warning('Inference endpoint is not available right now. Please try again later.')
-    return model_output
+        gr.Warning('An error ocurred. Please try again later.')
+    return output
