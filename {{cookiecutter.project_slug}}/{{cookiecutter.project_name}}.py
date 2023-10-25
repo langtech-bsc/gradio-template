@@ -13,6 +13,8 @@ MAX_NEW_TOKENS = int(os.environ.get("MAX_NEW_TOKENS", default=100))
 MAX_INPUT_CHARACTERS= int(os.environ.get("MAX_INPUT_CHARACTERS", default=100))
 SHOW_MODEL_PARAMETERS_IN_UI = os.environ.get("SHOW_MODEL_PARAMETERS_IN_UI", default=True) == "True"
 
+prompt_examples = ["Prompt example", "Prompt example", "Prompt example"]
+
 with gr.Blocks(**AinaGradioTheme().get_kwargs()) as demo:
     with gr.Row():
         with gr.Column(scale=0):
@@ -120,34 +122,16 @@ with gr.Blocks(**AinaGradioTheme().get_kwargs()) as demo:
 
     with gr.Row():
         with gr.Column():
-            gr.Examples(
-                label="Short prompts:",
-                examples=[
-                    ["""Prompt example"""],
-                ],
-                inputs=[input_] + parameters_compontents,
-                outputs=output,
-                fn=process_input,
-            )
-
-            gr.Examples(
-                label="Zero-shot prompts",
-                examples=[
-                    ["Prompt example"],
-                ],
-                inputs=[input_] + parameters_compontents,
-                outputs=output,
-                fn=process_input,
-            )
-            gr.Examples(
-                label="Few-Shot prompts:",
-                examples=[
-                    ["""Prompt example"""],
-                ],
-                inputs=[input_] + parameters_compontents,
-                outputs=output,
-                fn=process_input,
-            )
+            for example in prompt_examples:
+                gr.Examples(
+                    label="Example",
+                    examples=[
+                        [example],
+                    ],
+                    inputs=[input_] + parameters_compontents,
+                    outputs=output,
+                    fn=process_input,
+                )
 
     input_.change(
         fn=check_max_characters, 
