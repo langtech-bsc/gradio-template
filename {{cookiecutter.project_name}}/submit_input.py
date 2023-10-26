@@ -5,7 +5,6 @@ import gradio as gr
 
 # from save_to_dataset_hf import save_json
 
-
 def compute_output(input):
     #Change this code with yours ...
     return f"This is a sample output for {input}"

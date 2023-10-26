@@ -1,3 +1,0 @@
-aina-gradio-theme==1.0
-gradio==3.50.2
-python-dotenv==1.0.0

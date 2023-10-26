@@ -7,13 +7,26 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from submit_input import process_input
-from utils import check_max_characters, clear
+from utils import check_max_characters
 
 MAX_NEW_TOKENS = int(os.environ.get("MAX_NEW_TOKENS", default=100))
 MAX_INPUT_CHARACTERS= int(os.environ.get("MAX_INPUT_CHARACTERS", default=100))
-SHOW_MODEL_PARAMETERS_IN_UI = os.environ.get("SHOW_MODEL_PARAMETERS_IN_UI", default=True) == "True"
+SHOW_MODEL_PARAMETERS_IN_UI = os.environ.get("SHOW_MODEL_PARAMETERS_IN_UI", default="True") == "True"
 
 prompt_examples = ["Prompt example", "Prompt example", "Prompt example"]
+
+def clear():
+    return (
+        None, 
+        None,
+        gr.Slider.update(value=100),
+        gr.Slider.update(value=1.2),
+        gr.Slider.update(value=50),
+        gr.Slider.update(value=0.95),
+        gr.Checkbox.update(value=True),
+        gr.Slider.update(value=4),
+        gr.Slider.update(value=0.5),
+    )
 
 with gr.Blocks(**AinaGradioTheme().get_kwargs()) as demo:
     with gr.Row():
@@ -56,53 +69,53 @@ with gr.Blocks(**AinaGradioTheme().get_kwargs()) as demo:
                 gr.HTML(f"""<span id="counter" style="display: flex; justify-content: end;"> <span id="inputlenght">0</span>&nbsp;/&nbsp;{MAX_INPUT_CHARACTERS}</span>""")
 
             with gr.Row(variant="panel"):
-                with gr.Accordion("Model parameters", open=False, visible=SHOW_MODEL_PARAMETERS_IN_UI):
-                    max_new_tokens = Slider(
-                        minimum=1,
-                        maximum=200,
-                        step=1,
-                        value=MAX_NEW_TOKENS,
-                        label="Max tokens"
-                    )
-                    repetition_penalty = Slider(
-                        minimum=0.1,
-                        maximum=10,
-                        step=0.1,
-                        value=1.2,
-                        label="Repetition penalty"
-                    )
-                    top_k = Slider(
-                        minimum=1,
-                        maximum=100,
-                        step=1,
-                        value=50,
-                        label="Top k"
-                    )
-                    top_p = Slider(
-                        minimum=0.01,
-                        maximum=0.99,
-                        value=0.95,
-                        label="Top p"
-                    )  
-                    do_sample = Checkbox(
-                        value=True, 
-                        label="Do sample"
-                    )
-                    num_beams = Slider(
-                        minimum=1, 
-                        maximum=8, 
-                        step=1,
-                        value=4,
-                        label="Beams"
-                    )
-                    temperature = Slider(
-                        minimum=0, 
-                        maximum=1,
-                        value=0.5,
-                        label="Temperature"
-                    )
+                    with gr.Accordion("Model parameters", open=False, visible=SHOW_MODEL_PARAMETERS_IN_UI):
+                        max_new_tokens = Slider(
+                            minimum=1,
+                            maximum=200,
+                            step=1,
+                            value=MAX_NEW_TOKENS,
+                            label="Max tokens"
+                        )
+                        repetition_penalty = Slider(
+                            minimum=0.1,
+                            maximum=10,
+                            step=0.1,
+                            value=1.2,
+                            label="Repetition penalty"
+                        )
+                        top_k = Slider(
+                            minimum=1,
+                            maximum=100,
+                            step=1,
+                            value=50,
+                            label="Top k"
+                        )
+                        top_p = Slider(
+                            minimum=0.01,
+                            maximum=0.99,
+                            value=0.95,
+                            label="Top p"
+                        )  
+                        do_sample = Checkbox(
+                            value=True, 
+                            label="Do sample"
+                        )
+                        num_beams = Slider(
+                            minimum=1, 
+                            maximum=8, 
+                            step=1,
+                            value=4,
+                            label="Beams"
+                        )
+                        temperature = Slider(
+                            minimum=0, 
+                            maximum=1,
+                            value=0.5,
+                            label="Temperature"
+                        )
 
-                    parameters_compontents = [max_new_tokens, repetition_penalty, top_k, top_p, do_sample, num_beams, temperature]
+                        parameters_compontents = [max_new_tokens, repetition_penalty, top_k, top_p, do_sample, num_beams, temperature]
 
         with gr.Column(variant="panel"):
             output = Textbox(

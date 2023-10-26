@@ -21,4 +21,4 @@ WORKDIR $HOME/app
 # Copy the current directory contents into the container at $HOME/app setting the owner to the user
 COPY --chown=user . $HOME/app
 
-CMD ["python", "-u","{{cookiecutter.project_name}}.py"]
+CMD ["python", "-u","{{cookiecutter.script_name}}.py"]
