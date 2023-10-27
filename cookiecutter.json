@@ -1,5 +1,5 @@
 {
 	"project_name": "project",
 	"script_name": "app",
-	"demo_template": [ "standard","model_parameters","multiner" ]
+	"demo_template": [ "standard","sagemaker","multiner" ]
 }
