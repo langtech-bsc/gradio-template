@@ -1,5 +1,6 @@
 {
 	"project_name": "project",
 	"script_name": "app",
-	"demo_template": [ "standard","sagemaker","multiner" ]
-}
+	"demo_template": [ "standard","sagemaker","multiner" ],
+	"gradio_version": "3.50.2" 
+ }
