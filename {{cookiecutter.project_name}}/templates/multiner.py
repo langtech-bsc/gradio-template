@@ -24,8 +24,17 @@ def clear():
 with gr.Blocks(**AinaGradioTheme().get_kwargs()) as demo:
     with gr.Row():
         with gr.Column():
-            gr.Markdown(
-                """ **Multiner** Enter description of your NER demo.
+           gr.Markdown(
+                """# {{cookiecutter.project_name}}
+                
+                ✨ **[Model explanation]()** .
+
+                🧪 **Intended use**: 
+
+                ⚠️ **Limitations**:
+
+                👀 **Learn more about {{cookiecutter.project_name}}:** .
+                
                 """
             )
             
