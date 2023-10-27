@@ -1,4 +1,5 @@
 {
-	"project_slug": "project",
-	"script_name": "app"
+	"project_name": "project",
+	"script_name": "app",
+	"demo_template": [ "standard","sagemaker","multiner" ]
 }
