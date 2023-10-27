@@ -4,5 +4,5 @@ torch==2.1.0
 {% endif -%}
 
 aina-gradio-theme==1.0
-gradio==3.50.2
+gradio=={{cookiecutter.gradio_version}}
 python-dotenv==1.0.0
