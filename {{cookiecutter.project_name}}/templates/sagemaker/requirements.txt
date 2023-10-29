@@ -1,0 +1,3 @@
+aina-gradio-theme==1.0
+gradio=={{cookiecutter.gradio_version}}
+python-dotenv==1.0.0
