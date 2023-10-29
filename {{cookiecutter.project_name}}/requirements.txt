@@ -1,8 +1,0 @@
-{%- if cookiecutter.demo_template == "multiner" -%}
-transformers==4.34.0
-torch==2.1.0
-{% endif -%}
-
-aina-gradio-theme==1.0
-gradio==3.50.2
-python-dotenv==1.0.0
