@@ -7,5 +7,5 @@ sdk: gradio
 sdk_version: {{cookiecutter.gradio_version}}
 app_file: {{cookiecutter.script_name}}.py
 pinned: false
-license: mit
+license: mit 
 ---
