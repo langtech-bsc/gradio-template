@@ -6,18 +6,35 @@ app_name = "{{cookiecutter.script_name}}.py"
 template_selected = "{{cookiecutter.demo_template}}.py"
 default_template = "standard.py"
 
-template_dir_path = os.path.join(working_directory, 'templates')
-template_list = os.listdir(template_dir_path)
+templates_dir_path = os.path.join(working_directory, 'templates')
+template_selected_path = os.path.join(working_directory, 'templates','{{cookiecutter.demo_template}}' )
 
-if template_selected in template_list:
-    target_file_path = os.path.join(template_dir_path, template_selected)
-    new_file_path = os.path.join(template_dir_path, app_name)
+template_list = os.listdir(templates_dir_path)
+
+if '{{cookiecutter.demo_template}}' in template_list:
+    target_file_path = os.path.join(template_selected_path, template_selected)
+    new_file_path = os.path.join(template_selected_path, app_name)
     shutil.copy(target_file_path, new_file_path)
     shutil.move(new_file_path,working_directory)
-    shutil.rmtree(template_dir_path)
+
+    requirements_file_path = os.path.join(template_selected_path, 'requirements.txt')
+    shutil.move(requirements_file_path, working_directory)
+
+    if '{{cookiecutter.demo_template}}' == 'sagemaker':
+        handler_file_path = os.path.join(template_selected_path, 'handler.py')
+        shutil.move(handler_file_path, working_directory)
+        sagemaker_endpoint_path = os.path.join(template_selected_path, 'sagemaker_endpoint.py')
+        shutil.move(sagemaker_endpoint_path, working_directory)
+        
 else:
-    target_file_path = os.path.join(template_dir_path, default_template)
-    new_file_path = os.path.join(template_dir_path, app_name)
+    target_file_path = os.path.join(template_selected_path, default_template)
+
+    new_file_path = os.path.join(template_selected_path, app_name)
     shutil.copy(target_file_path, new_file_path)
     shutil.move(new_file_path,working_directory)
-    shutil.rmtree(template_dir_path)
+
+    requirements_file_path = os.path.join(template_selected_path, 'requirements.txt')
+    shutil.move(requirements_file_path, working_directory)
+
+
+shutil.rmtree(templates_dir_path)
