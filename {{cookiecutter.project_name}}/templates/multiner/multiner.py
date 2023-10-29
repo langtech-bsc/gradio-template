@@ -109,4 +109,4 @@ with gr.Blocks(**AinaGradioTheme().get_kwargs()) as demo:
 
 if __name__ == "__main__":
     demo.queue(concurrency_count=1, api_open=False)
-    demo.launch(show_api=False)
+    demo.launch(show_api=False, server_name='0.0.0.0')
