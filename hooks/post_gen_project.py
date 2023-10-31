@@ -1,5 +1,7 @@
 import os
 import shutil
+import subprocess
+
 working_directory = os.getcwd();
 
 app_name = "{{cookiecutter.script_name}}.py"
@@ -38,3 +40,9 @@ else:
 
 
 shutil.rmtree(templates_dir_path)
+
+if'{{cookiecutter.huggin_face_repo_url}}':
+    subprocess.call(['git', 'init'])
+    subprocess.call(['git', 'remote', 'add', 'origin', '{{cookiecutter.huggin_face_repo_url}}'])
+    subprocess.call(['git', 'add', '*'])
+    subprocess.call(['git', 'commit', '-m', 'Initial commit'])
