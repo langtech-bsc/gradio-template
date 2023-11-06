@@ -2,5 +2,6 @@
 	"project_name": "project",
 	"script_name": "app",
 	"demo_template": [ "standard","sagemaker","multiner" ],
+	"huggin_face_repo_url": "",
 	"gradio_version": "3.50.2" 
  }
