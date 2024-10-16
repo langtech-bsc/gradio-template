@@ -47,3 +47,5 @@ SHOW_MODEL_PARAMETERS_IN_UI = "True"
 ```
 Open http://127.0.0.1:7860 in your browser (or the url that prints the {{cookiecutter.script_name}}.py program when executed) 
 
+## License
+This project is distributed under the Apache-2.0 license. See the [LICENSE](https://github.com/langtech-bsc/gradio-template/blob/LICENSE) file for more information.
